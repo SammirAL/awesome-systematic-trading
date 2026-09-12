@@ -1,0 +1,14 @@
+# One-click Docker alternative: `docker compose up` then open http://127.0.0.1:8420
+# The port is published on 127.0.0.1 only — the app never leaves your machine.
+services:
+  awesome-systematic-trading:
+    build: .
+    container_name: awesome-systematic-trading
+    ports:
+      - "127.0.0.1:8420:8420"
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped

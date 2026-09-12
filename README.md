@@ -24,6 +24,10 @@ We are collecting a list of resources papers, softwares, books, articles for fin
   </div>
 </div>
 
+<!-- omit in toc -->
+### 🖱️ Browse this list locally — one click
+
+Run the whole list (plus a searchable explorer for the 61 strategy implementations, with syntax highlighting) as a local web app: double-click **`start.sh`** / **`start.command`** (Linux/macOS) or **`start.bat`** (Windows), or run `docker compose up`. Zero dependencies (Python 3 standard library only), localhost-only, no telemetry. Details in [RUN_LOCALLY.md](./RUN_LOCALLY.md).
 
 <details>
 <summary>Click here to see the full table of content</summary>
