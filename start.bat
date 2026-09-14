@@ -4,13 +4,15 @@ rem Zero dependencies: only needs Python 3 (https://www.python.org/downloads/).
 setlocal
 cd /d "%~dp0"
 
-where py >nul 2>nul
+rem "-V" probes verify a real interpreter (the Microsoft Store stub named
+rem python.exe fails this check instead of hijacking the launch).
+py -3 -V >nul 2>nul
 if %errorlevel%==0 (
   py -3 local_app\server.py %*
   goto :end
 )
 
-where python >nul 2>nul
+python -V >nul 2>nul
 if %errorlevel%==0 (
   python local_app\server.py %*
   goto :end
@@ -26,7 +28,8 @@ if %errorlevel%==0 (
 echo ----------------------------------------------------------------
 echo   Python 3 (or Docker) is required to run this app.
 echo   Python 3 (ou Docker) est requis pour lancer cette application.
-echo   ^> https://www.python.org/downloads/
+echo   Install it with:  winget install Python.Python.3.12
+echo   or from https://www.python.org/downloads/
 echo   (check "Add python.exe to PATH" during installation)
 echo ----------------------------------------------------------------
 
