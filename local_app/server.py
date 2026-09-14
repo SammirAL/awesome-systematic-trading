@@ -362,6 +362,20 @@ def render_code_page(name, source):
 # --------------------------------------------------------------------------
 
 
+def _asset_version():
+    """Cache-busting token: newest mtime of the bundled assets."""
+    try:
+        return str(int(max(
+            os.path.getmtime(os.path.join(ASSETS_DIR, name))
+            for name in os.listdir(ASSETS_DIR)
+        )))
+    except (OSError, ValueError):
+        return "1"
+
+
+ASSET_VERSION = _asset_version()
+
+
 def page(title, body, active="", strategy_count=0):
     nav = [
         ("/", "List", "home"),
@@ -383,7 +397,7 @@ def page(title, body, active="", strategy_count=0):
 <meta name="referrer" content="no-referrer">
 <title>%s · %s</title>
 <link rel="icon" href="/static/images/awesome-systematic-trading.jpeg">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=%s">
 </head>
 <body>
 <header class="topbar">
@@ -397,9 +411,10 @@ def page(title, body, active="", strategy_count=0):
 <footer>
   <p>Served locally from your machine · no telemetry, no tracking · GET/HEAD only, bound to localhost.</p>
 </footer>
-<script src="/assets/app.js"></script>
+<script src="/assets/app.js?v=%s"></script>
 </body>
-</html>""" % (html.escape(title), APP_NAME, APP_NAME, links, body)
+</html>""" % (html.escape(title), APP_NAME, ASSET_VERSION, APP_NAME, links, body,
+              ASSET_VERSION)
 
 
 def strategies_page(strategies):

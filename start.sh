@@ -4,6 +4,13 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+# Auto-update: fast-forward to the latest version when possible (offline-safe,
+# never blocks the launch).
+if command -v git >/dev/null 2>&1 && [ -d .git ]; then
+  echo "Checking for updates…"
+  git pull --ff-only --quiet 2>/dev/null || true
+fi
+
 if command -v python3 >/dev/null 2>&1; then
   exec python3 local_app/server.py "$@"
 elif command -v python >/dev/null 2>&1 && python -c 'import sys; sys.exit(0 if sys.version_info[0] == 3 else 1)'; then

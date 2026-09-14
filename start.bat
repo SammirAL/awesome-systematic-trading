@@ -4,6 +4,14 @@ rem Zero dependencies: only needs Python 3 (https://www.python.org/downloads/).
 setlocal
 cd /d "%~dp0"
 
+rem Auto-update: fast-forward to the latest version when possible
+rem (offline-safe, never blocks the launch).
+where git >nul 2>nul
+if %errorlevel%==0 if exist ".git" (
+  echo Checking for updates...
+  git pull --ff-only >nul 2>nul
+)
+
 rem "-V" probes verify a real interpreter (the Microsoft Store stub named
 rem python.exe fails this check instead of hijacking the launch).
 py -3 -V >nul 2>nul
