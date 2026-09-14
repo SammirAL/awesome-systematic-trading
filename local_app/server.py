@@ -534,6 +534,16 @@ def gold_page(strategies):
 signal applies. For an interactive, written analysis (ask Claude a question
 about gold framed by these same strategies), open the hosted web-app version
 of this project.</p>
+<div class='pcard'>
+  <h3>🤖 Want it live?</h3>
+  <p>The repository also ships a real-time <strong>paper-trading bot</strong>
+  that computes these signals on live gold prices, executes simulated orders
+  instantly under configurable money management, and writes a numbers-in-hand
+  analysis that refreshes continuously. Launch it with
+  <code>start-bot.sh</code> / <code>start-bot.bat</code> (or
+  <code>--demo</code> offline) and open
+  <a href="http://127.0.0.1:8430" target="_blank" rel="noopener noreferrer">127.0.0.1:8430</a>.</p>
+</div>
 <h2>Gold playbook — applicable strategies</h2>
 %s
 <div class='pcard'>

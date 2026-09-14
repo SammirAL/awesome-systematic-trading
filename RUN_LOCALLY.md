@@ -60,6 +60,28 @@ This app was built with a security-first mindset:
 - **Hardened container.** Non-root user, read-only filesystem,
   `cap_drop: ALL`, `no-new-privileges`, healthcheck included.
 
+## Real-time paper-trading bot 🤖
+
+`trading_bot/bot.py` turns the catalog's signals into a live bot: real-time
+market data (Yahoo Finance / Binance, keyless), instant simulated order
+execution, and a localhost dashboard at
+[http://127.0.0.1:8430](http://127.0.0.1:8430) where everything is
+re-configurable **while it runs** — risk per trade, volatility target,
+stop-loss, daily kill-switch, polling cadence, strategy toggles — plus a
+continuously refreshed, numbers-in-hand analysis of the traded asset (gold
+by default; BTC and SPY included).
+
+| Your setup | Do this |
+|------------|---------|
+| Linux / macOS | `./start-bot.sh` (add `--demo` to try it offline) |
+| Windows | double-click **`start-bot.bat`** |
+
+**Safety model:** paper trading only — no real broker is wired in, ever, by
+default. The `PaperBroker` class is the seam where a real adapter could be
+plugged, deliberately, with your own API keys and at your own risk. GET/POST
+are localhost-only with Host/Origin checks. Educational software — not
+investment advice.
+
 ## Prefer a native app? (Flutter) 📱
 
 The repo also ships a full **Flutter app** in [`flutter_app/`](./flutter_app/)

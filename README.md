@@ -31,6 +31,8 @@ Run the whole list (plus a searchable explorer for the 61 strategy implementatio
 
 Prefer a native app? A **Flutter app** for Android, iOS, Windows, macOS, Linux and Web lives in [`flutter_app/`](./flutter_app/) — same catalog, native Material UI, EN/中文, dark mode.
 
+There is also a **real-time paper-trading bot** (`start-bot.sh` / `start-bot.bat`): catalog signals on live gold/BTC/SPY prices, instant simulated execution, live-configurable money management — no real broker attached. Details in [RUN_LOCALLY.md](./RUN_LOCALLY.md).
+
 <details>
 <summary>Click here to see the full table of content</summary>
 
