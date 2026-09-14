@@ -25,13 +25,13 @@ class HomeScreen extends StatelessWidget {
           catalog.libraries.length),
       ((label: catalog.titles.strategies, icon: Icons.query_stats, tab: 2),
           loaded.strategies.length),
-      ((label: catalog.titles.books, icon: Icons.menu_book_outlined, tab: 3),
+      ((label: catalog.titles.books, icon: Icons.menu_book_outlined, tab: 4),
           catalog.books.length),
-      ((label: catalog.titles.videos, icon: Icons.play_circle_outline, tab: 3),
+      ((label: catalog.titles.videos, icon: Icons.play_circle_outline, tab: 4),
           catalog.videos.length),
-      ((label: catalog.titles.blogs, icon: Icons.rss_feed, tab: 3),
+      ((label: catalog.titles.blogs, icon: Icons.rss_feed, tab: 4),
           catalog.blogs.length),
-      ((label: catalog.titles.courses, icon: Icons.school_outlined, tab: 3),
+      ((label: catalog.titles.courses, icon: Icons.school_outlined, tab: 4),
           catalog.courses.length),
     ];
 

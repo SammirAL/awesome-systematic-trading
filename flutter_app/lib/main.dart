@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'src/app_settings.dart';
 import 'src/catalog_repository.dart';
+import 'src/screens/analysis_screen.dart';
 import 'src/screens/home_screen.dart';
 import 'src/screens/libraries_screen.dart';
 import 'src/screens/resources_screen.dart';
@@ -76,6 +77,7 @@ class _AppShellState extends State<AppShell> {
       (icon: Icons.home_outlined, label: strings.home),
       (icon: Icons.widgets_outlined, label: strings.libraries),
       (icon: Icons.query_stats, label: strings.strategies),
+      (icon: Icons.workspace_premium_outlined, label: strings.analysis),
       (icon: Icons.collections_bookmark_outlined, label: strings.resources),
     ];
 
@@ -137,6 +139,7 @@ class _AppShellState extends State<AppShell> {
               ),
               LibrariesScreen(libraries: loaded.catalog.libraries),
               StrategiesScreen(loaded: loaded),
+              AnalysisScreen(loaded: loaded),
               ResourcesScreen(catalog: loaded.catalog),
             ],
           );

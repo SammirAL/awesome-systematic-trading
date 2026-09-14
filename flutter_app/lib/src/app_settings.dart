@@ -66,6 +66,25 @@ class UiStrings {
     required this.loadError,
     required this.repository,
     required this.moreStrategies,
+    required this.analysis,
+    required this.goldTitle,
+    required this.goldIntro,
+    required this.askTitle,
+    required this.askHint,
+    required this.askButton,
+    required this.stop,
+    required this.thinking,
+    required this.askUnavailable,
+    required this.playbookTitle,
+    required this.howApplies,
+    required this.synthesisTitle,
+    required this.synthesisBody,
+    required this.disclaimer,
+    required this.truncatedNote,
+    required this.stoppedNote,
+    required this.rateLimitedNote,
+    required this.askFailedNote,
+    required this.viewCode,
   });
 
   final String home;
@@ -93,6 +112,25 @@ class UiStrings {
   final String loadError;
   final String repository;
   final String moreStrategies;
+  final String analysis;
+  final String goldTitle;
+  final String goldIntro;
+  final String askTitle;
+  final String askHint;
+  final String askButton;
+  final String stop;
+  final String thinking;
+  final String askUnavailable;
+  final String playbookTitle;
+  final String howApplies;
+  final String synthesisTitle;
+  final String synthesisBody;
+  final String disclaimer;
+  final String truncatedNote;
+  final String stoppedNote;
+  final String rateLimitedNote;
+  final String askFailedNote;
+  final String viewCode;
 
   static const en = UiStrings(
     home: 'Home',
@@ -122,6 +160,40 @@ class UiStrings {
     loadError: 'Could not load the catalog.',
     repository: 'GitHub repository',
     moreStrategies: 'More strategies on paperswithbacktest.com',
+    analysis: 'Gold',
+    goldTitle: 'Gold — systematic analysis',
+    goldIntro:
+        'Every catalog strategy that can trade gold, on one page — plus a '
+        'direct line to Claude for a complete written analysis built on '
+        'those same strategies.',
+    askTitle: 'Ask for a complete analysis',
+    askHint:
+        'Ask in any language — e.g. “Analyse complète de l’or selon ces '
+        'stratégies”.',
+    askButton: 'Ask Claude',
+    stop: 'Stop',
+    thinking: 'Thinking…',
+    askUnavailable:
+        'Live analysis runs on the published web app (claude.ai). In this '
+        'build, the playbook below is always available.',
+    playbookTitle: 'Gold playbook — applicable strategies',
+    howApplies: 'Applied to gold:',
+    synthesisTitle: 'Putting it together',
+    synthesisBody:
+        'A systematic gold sleeve typically combines trend (10-month moving '
+        'average), 12-month time-series momentum and curve carry, rebalanced '
+        'monthly, with skewness / return-asymmetry as satellite signals. '
+        'Note that gold usually trades in contango, so the term-structure '
+        'signal is often short gold, hedging the trend sleeve. Sharpe and '
+        'volatility figures shown are for the full multi-asset '
+        'implementations from the catalog, not for gold alone.',
+    disclaimer:
+        'Educational summary of published research — not investment advice.',
+    truncatedNote: 'The answer was cut short — ask for less at a time.',
+    stoppedNote: 'Stopped.',
+    rateLimitedNote: 'Usage limit reached — try again in a few minutes.',
+    askFailedNote: 'The analysis could not be completed. Try again later.',
+    viewCode: 'View code',
   );
 
   static const zh = UiStrings(
@@ -150,5 +222,27 @@ class UiStrings {
     loadError: '目录加载失败。',
     repository: 'GitHub 仓库',
     moreStrategies: '更多策略见 paperswithbacktest.com',
+    analysis: '黄金',
+    goldTitle: '黄金——系统化分析',
+    goldIntro: '目录中所有适用于黄金的策略汇总在一页，并可直接请 Claude 基于这些策略撰写完整分析。',
+    askTitle: '请求完整分析',
+    askHint: '可用任何语言提问，例如“基于这些策略对黄金做完整分析”。',
+    askButton: '询问 Claude',
+    stop: '停止',
+    thinking: '思考中…',
+    askUnavailable: '实时分析在已发布的网页版（claude.ai）上可用；本地版本始终提供下方的策略手册。',
+    playbookTitle: '黄金策略手册——适用策略',
+    howApplies: '应用于黄金：',
+    synthesisTitle: '组合思路',
+    synthesisBody:
+        '系统化黄金组合通常结合趋势（10 个月均线）、12 个月时间序列动量与期限结构套利，按月再平衡，'
+        '偏度/收益不对称作为辅助信号。黄金期货通常处于升水状态，因此期限结构信号往往做空黄金，'
+        '对冲趋势部分。表中的夏普比率与波动率来自目录中的完整多资产实现，并非仅针对黄金。',
+    disclaimer: '仅为已发表研究的教育性总结，不构成投资建议。',
+    truncatedNote: '回答被截断——请一次询问更少内容。',
+    stoppedNote: '已停止。',
+    rateLimitedNote: '已达到使用上限——请几分钟后再试。',
+    askFailedNote: '分析未能完成，请稍后再试。',
+    viewCode: '查看代码',
   );
 }
