@@ -60,6 +60,22 @@ This app was built with a security-first mindset:
 - **Hardened container.** Non-root user, read-only filesystem,
   `cap_drop: ALL`, `no-new-privileges`, healthcheck included.
 
+## Prefer a native app? (Flutter) 📱
+
+The repo also ships a full **Flutter app** in [`flutter_app/`](./flutter_app/)
+— the same catalog as native Material UI for **Android, iOS, Windows, macOS,
+Linux and Web**, with a searchable strategy explorer and a syntax-highlighted
+code viewer. With the [Flutter SDK](https://docs.flutter.dev/get-started)
+installed:
+
+```bash
+cd flutter_app
+flutter run          # or: flutter build apk / web / linux / macos / windows
+```
+
+See [`flutter_app/README.md`](./flutter_app/README.md) for details. The
+Python one-click launcher above stays the zero-dependency option.
+
 ## Troubleshooting
 
 - **"Python 3 is required"** → install it from

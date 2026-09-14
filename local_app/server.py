@@ -260,7 +260,7 @@ def load_strategies():
         source_url, desc_lines = "", []
         try:
             with open(path, encoding="utf-8", errors="replace") as f:
-                head = [f.readline() for _ in range(40)]
+                head = [f.readline() for _ in range(200)]
             for idx, line in enumerate(head):
                 m = _SOURCE_URL_RE.match(line.strip())
                 if m:
