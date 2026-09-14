@@ -367,6 +367,7 @@ def page(title, body, active="", strategy_count=0):
         ("/", "List", "home"),
         ("/zh", "中文", "zh"),
         ("/strategies", "Strategies (%d)" % strategy_count, "strategies"),
+        ("/gold", "Gold", "gold"),
         ("/run-locally", "About this app", "about"),
     ]
     links = "".join(
@@ -439,6 +440,94 @@ code with syntax highlighting — or download it to run it in
 <p id="no-results" hidden>No strategy matches this filter.</p>
 """ % (len(strategies), "".join(rows))
     return body
+
+
+# --------------------------------------------------------------------------
+# Gold analysis page: the catalog strategies applicable to gold, with how
+# each signal applies. Keyed by file name (same playbook as the Flutter app).
+# --------------------------------------------------------------------------
+
+GOLD_PLAYBOOK = [
+    ("asset-class-trend-following.py",
+     "Hold gold (e.g. GLD) only while it trades above its 10-month simple "
+     "moving average; otherwise sit in cash."),
+    ("time-series-momentum-effect.py",
+     "Go long gold futures when their own trailing 12-month excess return "
+     "is positive, short when negative, scaled to a volatility target — "
+     "the classic TSMOM rule."),
+    ("momentum-effect-in-commodities.py",
+     "Rank gold's trailing 12-month return inside the commodity universe; "
+     "hold it while it sits in the top group."),
+    ("term-structure-effect-in-commodities.py",
+     "Trade the futures curve: long backwardated markets, short contangoed "
+     "ones. Gold usually sits in contango, so this signal is often short "
+     "gold — a hedge to the trend sleeve."),
+    ("skewness-effect-in-commodities.py",
+     "Compute the 12-month skewness of gold's daily returns; low or "
+     "negative skew argues for a long position, high positive skew for a "
+     "short."),
+    ("return-asymmetry-effect-in-commodity-futures.py",
+     "A refined upside-vs-downside asymmetry measure replaces plain "
+     "skewness for the same long/short call on gold."),
+    ("asset-class-momentum-rotational-system.py",
+     "Include gold in a five-ETF universe and hold it for the next month "
+     "whenever its 12-month momentum ranks in the top three."),
+    ("value-and-momentum-factors-across-asset-classes.py",
+     "Combine value (long-run reversal) and momentum signals on gold "
+     "inside a cross-asset-class long/short portfolio."),
+]
+
+GOLD_SYNTHESIS = (
+    "A systematic gold sleeve typically combines trend (10-month moving "
+    "average), 12-month time-series momentum and curve carry, rebalanced "
+    "monthly, with skewness / return-asymmetry as satellite signals. Gold "
+    "usually trades in contango, so the term-structure signal is often "
+    "short gold, hedging the trend sleeve. Sharpe and volatility figures "
+    "shown are for the full multi-asset implementations from the catalog, "
+    "not for gold alone."
+)
+
+
+def gold_page(strategies):
+    by_file = {s["file"]: s for s in strategies}
+    cards = []
+    for file_name, note in GOLD_PLAYBOOK:
+        s = by_file.get(file_name)
+        if not s:
+            continue
+        chips = []
+        if s["sharpe"]:
+            chips.append("<span class='chip'>Sharpe %s</span>" % html.escape(s["sharpe"]))
+        if s["vol"]:
+            chips.append("<span class='chip'>Vol %s</span>" % html.escape(s["vol"]))
+        if s["rebalancing"]:
+            chips.append("<span class='chip'>%s</span>" % html.escape(s["rebalancing"]))
+        if s["paper"].startswith(("http://", "https://")):
+            chips.append(
+                "<a class='chip' href='%s' target='_blank' rel='noopener noreferrer'>📄 Paper</a>"
+                % html.escape(s["paper"], quote=True)
+            )
+        chips.append("<a class='chip' href='/strategy/%s'>&lt;/&gt; Code</a>" % quote(file_name))
+        cards.append(
+            "<div class='pcard'><h3>%s</h3><p class='chips'>%s</p>"
+            "<p><strong>Applied to gold:</strong> %s</p></div>"
+            % (html.escape(s["title"]), "".join(chips), html.escape(note))
+        )
+    return """
+<h1>🥇 Gold — systematic analysis</h1>
+<p>Every catalog strategy that can trade gold, on one page, with how each
+signal applies. For an interactive, written analysis (ask Claude a question
+about gold framed by these same strategies), open the hosted web-app version
+of this project.</p>
+<h2>Gold playbook — applicable strategies</h2>
+%s
+<div class='pcard'>
+  <h3>Putting it together</h3>
+  <p>%s</p>
+  <p class='muted'><em>Educational summary of published research — not
+  investment advice.</em></p>
+</div>
+""" % ("\n".join(cards), html.escape(GOLD_SYNTHESIS))
 
 
 # --------------------------------------------------------------------------
@@ -548,6 +637,12 @@ class Handler(BaseHTTPRequestHandler):
             return self._send_html(
                 page("Strategies", strategies_page(srv.strategies),
                      active="strategies", strategy_count=len(srv.strategies))
+            )
+
+        if path == "/gold":
+            return self._send_html(
+                page("Gold analysis", gold_page(srv.strategies),
+                     active="gold", strategy_count=len(srv.strategies))
             )
 
         if path.startswith("/strategy/"):

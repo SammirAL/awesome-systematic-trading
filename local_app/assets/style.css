@@ -168,6 +168,18 @@ td img { max-height: 22px; vertical-align: middle; }
 .strategy-row .desc { color: var(--fg-muted); font-size: 13px; margin-top: 2px; }
 #no-results { color: var(--fg-muted); font-style: italic; }
 
+/* Gold analysis page */
+.pcard {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  background: var(--bg);
+}
+.pcard h3 { margin: 0 0 10px; }
+.pcard .chips { margin-bottom: 10px; }
+.muted { color: var(--fg-muted); }
+
 /* Code viewer */
 .code-head { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
 .code-head h1 { border: none; margin-bottom: 4px; }
